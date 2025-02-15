@@ -11,6 +11,6 @@ void ShowWrongWord();
 
 void ShowWord(char &rightAnswer, int &length);
 
-void ShowResult(bool step);
+void SayResult(bool step);
 
 #endif

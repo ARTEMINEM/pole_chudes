@@ -63,7 +63,7 @@ int main()
                         continue;
                     }                     
                     step = CheckUserAnswer(userAnswer, rightAnswer, *length, end);                // проверяет букву на правильность
-                    ShowResult(step);                      // выводит: ОТКРОЙТЕ! или Нет такой буквы(                          
+                    SayResult(step);                      // выводит: ОТКРОЙТЕ! или Нет такой буквы(                          
                     PlayerTurn(numberPlayer,turn,step);    // устанавливает очередь человека //CheckUserAnswer выдает true если угадал и false если нет
                     if (end)
                     {
