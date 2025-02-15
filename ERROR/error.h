@@ -1,6 +1,6 @@
 #ifndef ERROR_H
 #define ERROR_H
 
-int checkErrors(int errorCode);
+int CheckError(int errorCode);
 
 #endif
