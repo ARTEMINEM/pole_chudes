@@ -12,9 +12,10 @@ int main()
     {
         /*переменные будут*/
         int ErrCode = 0;
-        bool game = true;
-        int play = 0, numberPlayer = 0, turn = 0;
-        int size;                               //длина слова (может и не надо, пока хз)
+        int length[100];                // ОБГОВОРИТЬ!!! объясню как встретимся, 100 эта рандомно написал
+        bool step = false, end = false;
+        int play = 0, numberPlayer = 0, turn = 1;
+        int size, quantity = 0;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
         char question, rightAnswer, userAnswer;                  /*пока чисто записал чтобы не забыть; вообще должно быть чето типо массивов, котторые вопрос 
                                                                   и ответ записывают в себе; короче подумаем как лучше*/
         do
@@ -41,15 +42,36 @@ int main()
                 while (ErrCode != 0);
 
                 QuestionAnswer(question, rightAnswer);         // выбирает вопрос и ответ (указатели наверн нужны, а не ссылки для массива)
-                while (game)
-                {
-                    PlayerTurn(numberPlayer, turn);                     // устанавливает очередь человека    
-                    ShowQuestion(question, userAnswer, turn);           // показывает пользователю вопрос (скорее всего она же и просит ввести букву или слово)          
-                    
+                while (true)
+                {    
+                    do
+                    {
+                        ShowWord(rightAnswer, *length);      //  показывает слово в виде _ _ _ _ _ _ или  _ А _ _ _ А (это для примера)                                 
+                        ShowQuestion(question, userAnswer, turn);     // показывает пользователю (пишет номер пользователя) вопрос (скорее всего она же и просит ввести букву или слово)          
+                        ErrCode = Alphabet(userAnswer/*для вычисления кое какой ошибки походу еще нужно длину массива с ответом*/);               // будет массив букв из которого вычеркиваются буквы которые использовались плюс проверка на некоректный ввод (и еще если слово вводится то просто выход из функции, даже если слово из говна состоит думаю)
+                        CheckError(ErrCode);
+                    }                                                  
+                    while (ErrCode != 0);
+                    if (FullWord(userAnswer))         // проверяет правильное слово ввел игрок
+                    {
+                        break;
+                    }                                                
+                    else
+                    {
+                        PlayerTurn(numberPlayer,turn,false);
+                        ShowWrongWord();                      // сообщение о введении неправильного слова
+                        continue;
+                    }                     
+                    step = CheckUserAnswer(userAnswer, rightAnswer, *length, end);                // проверяет букву на правильность
+                    ShowResult(step);                      // выводит: ОТКРОЙТЕ! или Нет такой буквы(                          
+                    PlayerTurn(numberPlayer,turn,step);    // устанавливает очередь человека //CheckUserAnswer выдает true если угадал и false если нет
+                    if (end)
+                    {
+                        break;
+                    }
                 }
                 
             case 2: // это если выйти из игры
-
         }
     }
 }
