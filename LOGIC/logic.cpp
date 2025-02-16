@@ -67,11 +67,14 @@ int correctWord(string &rightAnswer, string &userAnswer) {
 
 }
 
-bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& letter, int &quantity) {
-    bool result = false;
+void Letter(string &rightAnswer, vector<char>& letter) {
     for (int i = 0; i < rightAnswer.length(); i++) {
         letter.push_back('_');
     }
+}
+
+bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& letter, int &quantity) {
+    bool result = false;
     vector<char> charArray(rightAnswer.begin(), rightAnswer.end());            //Разбииение слова по частям
     for (int i = 0; i < rightAnswer.length(); i++) {                           //Подстановка буквы вместо символа "_"
         if (userAnswer[0] == charArray[i]) {
