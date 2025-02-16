@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "logic.h"
-#include "user.h"
-#include "error.h"
+#include "../LOGIC/logic.h"
+#include "../UI/user.h"
+#include "../ERROR/error.h"
 
 //  ЕСЛИ ЧТО ТЫ ПОКА НИКАК СВОЮ ЛОГИКУ НЕ ПОДГОНЯЙ ПОД ТО, ЧТО Я НАПИСАЛ ИЛИ НАОБОРОТ МОЕ НИКАК НЕ МЕНЯЙ.
 //  ПОТОМ КАК ВСТРЕТИМСЯ И ВСЕ ОБСУДИМ ТО СКОМБИНИРУЕМ ВСЕ (КАПСОМ ЧТОБЫ УВИДЕЛ)
@@ -26,7 +26,7 @@ int main()
             system("cls");              
             ShowMenu(play);                    // эта штука выводит надпись поле чудес и кнопки играть или выйти, и пользователь выбирает (юзер)
             ErrCode = PlayorExit(play);        // эта штука проверяет что пользователь ввел (логика)
-            CheckError(ErrCode);                // если была ошибка (ErrCode != 0), проверяет что за ошибка
+            //CheckError(ErrCode);                // если была ошибка (ErrCode != 0), проверяет что за ошибка
         }
         while (ErrCode != 0);
         
@@ -74,8 +74,10 @@ int main()
                         break;
                     }
                 }
+                break;
                 
             case 2: // это если выйти из игры
+                return 0;
         }
     }
 }
