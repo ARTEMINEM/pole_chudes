@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <vector>
 #include "logic.h"
 #include "user.h"
 #include "error.h"
@@ -15,9 +17,10 @@ int main()
         int length[100];                // ОБГОВОРИТЬ!!! объясню как встретимся, 100 эта рандомно написал
         bool step = false, end = false;
         int play = 0, numberPlayer = 0, turn = 1;
-        int size, quantity = 0;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
-        char question, rightAnswer, userAnswer;                  /*пока чисто записал чтобы не забыть; вообще должно быть чето типо массивов, котторые вопрос 
-                                                                  и ответ записывают в себе; короче подумаем как лучше*/
+        int quantity = 0;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
+        std::string question, rightAnswer, userAnswer;
+        std::vector<char> letter;
+
         do
         {
             system("cls");              
@@ -48,7 +51,7 @@ int main()
                     {
                         ShowWord(rightAnswer, *length);      //  показывает слово в виде _ _ _ _ _ _ или  _ А _ _ _ А (это для примера)                                 
                         ShowQuestion(question, userAnswer, turn);     // показывает пользователю (пишет номер пользователя) вопрос (скорее всего она же и просит ввести букву или слово)          
-                        ErrCode = Alphabet(userAnswer/*для вычисления кое какой ошибки походу еще нужно длину массива с ответом*/);               // будет массив букв из которого вычеркиваются буквы которые использовались плюс проверка на некоректный ввод (и еще если слово вводится то просто выход из функции, даже если слово из говна состоит думаю)
+                        ErrCode = correctWord(rightAnswer, userAnswer);               // будет массив букв из которого вычеркиваются буквы которые использовались плюс проверка на некоректный ввод (и еще если слово вводится то просто выход из функции, даже если слово из говна состоит думаю)
                         CheckError(ErrCode);
                     }                                                  
                     while (ErrCode != 0);
@@ -58,14 +61,14 @@ int main()
                     }                                                
                     else
                     {
-                        PlayerTurn(numberPlayer,turn,false);
-                        ShowWrongWord();                      // сообщение о введении неправильного слова
+                        PlayerTurn(numberPlayer,turn,false);    // устанавливает очередь человека
+                        ShowWrongWord();                        // сообщение о введении неправильного слова
                         continue;
                     }                     
                     step = CheckUserAnswer(userAnswer, rightAnswer, *length, end);                // проверяет букву на правильность
                     SayResult(step);                      // выводит: ОТКРОЙТЕ! или Нет такой буквы(                          
                     PlayerTurn(numberPlayer,turn,step);    // устанавливает очередь человека //CheckUserAnswer выдает true если угадал и false если нет
-                    if (end)
+                    if (end) // наверн нужно отдельную функцию хотя и хз
                     {
                         break;
                     }
@@ -75,4 +78,3 @@ int main()
         }
     }
 }
-
