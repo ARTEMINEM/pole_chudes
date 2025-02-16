@@ -1,24 +1,25 @@
 #ifndef LOGIC_H
 #define LOGIC_H
-
+#include <string>
 /*@brief PlayorExit - функция начала игры
  *@param reference &play - значение, получаемое от пользователя
  *@return - void
  */
-int PlayorExit(int &play);
+using namespace std;
+int PlayorExit(int play);
 //прикольный этот комментарийБ у Стаса посмотрел
 
-int chooseNum(int &numberPlayer);
+int chooseNum(int numberPlayer);
 
-void QuestionAnswer(char &question,char  &rightAnswer);  //крайне сыро, надо думать (но это уже когда функции будем писать)
+void QuestionAnswer(string &question, string &rightAnswer);  //крайне сыро, надо думать (но это уже когда функции будем писать)
 
-int Alphabet(char &userAnswer);
+int correctWord(string &rightAnswer, string &userAnswer);
 
-bool CheckUserAnswer(char &userAnswer, char &rightAnswer, int &length, bool end);
+bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& letter, int &quantity);
 
-void PlayerTurn(int &numberPlayer,int &turn, bool result);
+void PlayerTurn(int &numberPlayer,int &turn, bool step);
 
-bool FullWord(char &userAnswer);
+bool FullWord(string &userAnswer, string &rightAnswer);
 
 
 
