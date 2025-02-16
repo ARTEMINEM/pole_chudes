@@ -9,7 +9,7 @@ void ShowQuestion(std::string &question, std::string &userAnswer, int &turn);
 
 void ShowWrongWord();
 
-void ShowWord(char &rightAnswer, int &length);
+void ShowWord(vector<char>& letter);
 
 void SayResult(bool step);
 

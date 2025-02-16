@@ -20,8 +20,8 @@ void NumPlayers(int &numberPlayer)
 
 void ShowQuestion(string &question, string &userAnswer, int &turn)
 {
-    // вывод вопроса и номер игрока который отвечает
-    // пользовательский ввод
+    cout << question << endl << "Player's turn " << turn << ": " << endl;
+    cin >> userAnswer;
 }
 
 void ShowWrongWord()
@@ -29,15 +29,13 @@ void ShowWrongWord()
     cout << endl << "Hmmm... Wrong word!" <<endl;
 }
 
-void ShowWord(char &rightAnswer, int &length)
+void ShowWord(vector<char>& letter)
 {
-    /*for (int i = 0; i < strlen(length); i++)
+    for (int i = 0; i < letter.size(); i++)
     {
-        if (lengt[i] == *)
-            cout << rightAnswer[i] << " ";
-        else
-            cout << "_ ";  
-    }*/
+        cout << letter[i] << " ";
+    }
+    cout << endl;
 }
 
 void SayResult(bool step)

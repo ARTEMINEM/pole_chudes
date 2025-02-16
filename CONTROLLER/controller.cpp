@@ -40,22 +40,23 @@ int main()
                     system("cls");
                     NumPlayers(numberPlayer);              // эта штука спрашивает сколько людей играет, и пользователь вводит
                     ErrCode = chooseNum(numberPlayer);     // эта штука проверяет что пользователь ввел
-                    CheckError(ErrCode);                    // если была ошибка (ErrCode != 0), проверяет что за ошибка
+                    //CheckError(ErrCode);                    // если была ошибка (ErrCode != 0), проверяет что за ошибка
                 }
                 while (ErrCode != 0);
 
                 QuestionAnswer(question, rightAnswer);         // выбирает вопрос и ответ (указатели наверн нужны, а не ссылки для массива)
+                Letter(rightAnswer,letter);
                 while (true)
                 {    
                     do
                     {
-                        ShowWord(rightAnswer, *length);      //  показывает слово в виде _ _ _ _ _ _ или  _ А _ _ _ А (это для примера)                                 
+                        ShowWord(letter);      //  показывает слово в виде _ _ _ _ _ _ или  _ А _ _ _ А (это для примера)                                 
                         ShowQuestion(question, userAnswer, turn);     // показывает пользователю (пишет номер пользователя) вопрос (скорее всего она же и просит ввести букву или слово)          
                         ErrCode = correctWord(rightAnswer, userAnswer);               // будет массив букв из которого вычеркиваются буквы которые использовались плюс проверка на некоректный ввод (и еще если слово вводится то просто выход из функции, даже если слово из говна состоит думаю)
-                        CheckError(ErrCode);
+                        //CheckError(ErrCode);
                     }                                                  
                     while (ErrCode != 0);
-                    if (FullWord(userAnswer))         // проверяет правильное слово ввел игрок
+                    if (FullWord(userAnswer, rightAnswer))         // проверяет правильное слово ввел игрок
                     {
                         break;
                     }                                                
@@ -65,7 +66,7 @@ int main()
                         ShowWrongWord();                        // сообщение о введении неправильного слова
                         continue;
                     }                     
-                    step = CheckUserAnswer(userAnswer, rightAnswer, *length, end);                // проверяет букву на правильность
+                    step = CheckUserAnswer(userAnswer, rightAnswer, letter, quantity);                // проверяет букву на правильность
                     SayResult(step);                      // выводит: ОТКРОЙТЕ! или Нет такой буквы(                          
                     PlayerTurn(numberPlayer,turn,step);    // устанавливает очередь человека //CheckUserAnswer выдает true если угадал и false если нет
                     if (end) // наверн нужно отдельную функцию хотя и хз

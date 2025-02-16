@@ -21,6 +21,8 @@ void PlayerTurn(int &numberPlayer,int &turn, bool step);
 
 bool FullWord(string &userAnswer, string &rightAnswer);
 
+void Letter(string &rightAnswer, vector<char>& letter);
+
 
 
 
