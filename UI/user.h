@@ -5,7 +5,7 @@ void ShowMenu(int &play);
 
 void NumPlayers(int &numberPlayer);
 
-void ShowQuestion(char &question, char &userAnswer, int &turn);  
+void ShowQuestion(std::string &question, std::string &userAnswer, int &turn);  
 
 void ShowWrongWord();
 

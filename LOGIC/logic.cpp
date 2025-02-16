@@ -5,11 +5,26 @@
 #include <ctime>
 #include <cctype>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
+int PlayorExit(int play) {
+    if (play == 1 || play == 2) {
+        return 0;
+    }
+    return 1;
+}
+
+int chooseNum(int numberPlayer) {
+    if (numberPlayer == 1 || numberPlayer == 2) {
+        return 0;
+    }
+    return 1;
+}
+
 // Функция выбирает случайный вопрос и ответ
-void getRandomQuestion(string &question, string &answer) {
+void QuestionAnswer(string &question, string &rightAnswer) {
     vector<string> questions = {
         "Which planet is the largest in the solar system?",
         "What is the name of the capital of France?",
@@ -29,51 +44,56 @@ void getRandomQuestion(string &question, string &answer) {
     //Определение вопроса и ответа для пользователя
     int index = rand() % questions.size();
     question = questions[index];
-    answer = answers[index];
+    rightAnswer = answers[index];
 }
 
-
-
 //Функция проверяющая правильность ввода буквы
-int correctWord(char &word) {
-    int num = word; //Первеод буквы в код ASCII
+int correctWord(string &rightAnswer, string &userAnswer) {
+    int num = userAnswer[0]; //Первеод буквы в код ASCII
+
+    if (rightAnswer.length() == userAnswer.length()) return 0;
+    
+    if (userAnswer.length() > 1) return 1;
 
     //Проверка на букву английского алфавита
     if ((65 <= num && num <= 90) || (97 <= num && num <= 122)) {
-        return 1;
-    }
-    else {
         return 0;
     }
+    else {
+        return 1;
+    }
+
+    //ДОБАВИТЬ ЕЩЕ ОДНО УСЛОВИЕ С ВВОДОМ ТОЙ ЖЕ БУКВЫ 
+
 }
 
-//Функция угадывания слова
-void playGame(char &word, string &question, string &answer) {
-    cout << question << endl;
-    char wd[answer.length() + 1];                                    //Массив для угадывания слова
-    for (int i = 0; i < answer.length(); i++) {
-        wd[i] = '_';
+bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& letter, int &quantity) {
+    bool result = false;
+    for (int i = 0; i < rightAnswer.length(); i++) {
+        letter.push_back('_');
     }
-    vector<char> charArray(answer.begin(), answer.end());            //Разбииение слова по частям
-    while (true) {
-        cout << "Enter a letter: ";
-        cin >> word;
-        if (correctWord(word) == 1) {
-            for (int i = 0; i < answer.length(); i++) {              //Подстановка буквы вместо символа "_"
-                if (word == charArray[i]) {
-                    wd[i] = word;
-                }
-            }
-            for (int i = 0; i < answer.length(); i++) {              //Вывод слова
-                cout << wd[i] << ' ';
-            }
-            cout << endl;
-        }
-        else {
-            cout << "Error: you entered the wrong letter, try again!" << endl;
-            continue;
+    vector<char> charArray(rightAnswer.begin(), rightAnswer.end());            //Разбииение слова по частям
+    for (int i = 0; i < rightAnswer.length(); i++) {                           //Подстановка буквы вместо символа "_"
+        if (userAnswer[0] == charArray[i]) {
+            letter[i] = userAnswer[0];
+            result = true;
+            quantity++;
         }
     }
+    return result;
+}
+
+void PlayerTurn(int &numberPlayer,int &turn, bool step) {
+    if (!step) turn++;
+
+    if (turn > numberPlayer) turn = 1;
+}
+
+bool FullWord(string &userAnswer, string &rightAnswer) {
+    std::sort(userAnswer.begin(), userAnswer.end());
+    std::sort(rightAnswer.begin(), rightAnswer.end());
+
+    return userAnswer == rightAnswer;
 }
 
 //Генерирование случайных очков для пользователя
@@ -85,32 +105,4 @@ int Wheel(int point) {
     uniform_int_distribution<int> dist(0, size - 1);                                       //Определяем диапазон случайных чисел
     point = pt[dist(gen)];                                                                 //Выбор случайного элемента из массива
     return point;
-}
-
-int main() {
-    srand(time(0));
-    
-    int num = 1, point;
-
-    //Генерация вопроса и ответа
-    string question, answer;
-    getRandomQuestion(question, answer);
-
-    char word;
-    playGame(word, question, answer);
-
-    //Часть кода для UI и Controller
-    char ent;
-    cout << "Player namber " << num << " it's your turn to spin, press 'O' to start spinning the wheel: ";
-    while(true) {
-        cin >> ent;
-        if (ent == 'O') {
-            cout << Wheel(point);
-            break;
-        }
-        else {
-            cout << "Please, press 'O' to start spinning the wheel:";
-        }
-    }
-
 }

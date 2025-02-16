@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <string>
 using namespace std;
 
 //пока чисто для работы
@@ -17,7 +18,7 @@ void NumPlayers(int &numberPlayer)
     cin >> numberPlayer;
 }
 
-void ShowQuestion(char &question, char &userAnswer, int &turn)
+void ShowQuestion(string &question, string &userAnswer, int &turn)
 {
     // вывод вопроса и номер игрока который отвечает
     // пользовательский ввод
