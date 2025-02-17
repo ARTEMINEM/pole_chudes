@@ -6,8 +6,8 @@
  *@return - void
  */
 using namespace std;
-template <typename T>
-int PlayorExit(T play);
+
+int PlayorExit(int play);
 
 int chooseNum(int numberPlayer);
 

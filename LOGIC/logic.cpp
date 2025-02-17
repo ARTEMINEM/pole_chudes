@@ -10,8 +10,7 @@
 
 using namespace std;
 
-template <typename T>
-int PlayorExit(T play) {
+int PlayorExit(int play) {
     if (play == 1 || play == 2) {
         return 0;
     }
