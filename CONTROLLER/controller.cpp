@@ -14,8 +14,7 @@ int main()
     {
         /*переменные будут*/
         int ErrCode = 0;
-        int length[100];                // ОБГОВОРИТЬ!!! объясню как встретимся, 100 эта рандомно написал
-        bool step = false, end = false;
+        bool step = false, end = false, checkLenWord = false;
         int play = 0, numberPlayer = 0, turn = 1;
         int quantity = 0;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
         std::string question, rightAnswer, userAnswer;
@@ -23,10 +22,11 @@ int main()
 
         do
         {
-            system("cls");              
+            //system("cls");              
             ShowMenu(play);                    // эта штука выводит надпись поле чудес и кнопки играть или выйти, и пользователь выбирает (юзер)
             ErrCode = PlayorExit(play);        // эта штука проверяет что пользователь ввел (логика)
             //CheckError(ErrCode);                // если была ошибка (ErrCode != 0), проверяет что за ошибка
+            cout << ErrCode << endl;
         }
         while (ErrCode != 0);
         
@@ -37,7 +37,7 @@ int main()
             case 1: // это если играть нажал
                 do
                 {
-                    system("cls");
+                    //system("cls");
                     NumPlayers(numberPlayer);              // эта штука спрашивает сколько людей играет, и пользователь вводит
                     ErrCode = chooseNum(numberPlayer);     // эта штука проверяет что пользователь ввел
                     //CheckError(ErrCode);                    // если была ошибка (ErrCode != 0), проверяет что за ошибка
@@ -52,20 +52,20 @@ int main()
                     {
                         ShowWord(letter);      //  показывает слово в виде _ _ _ _ _ _ или  _ А _ _ _ А (это для примера)                                 
                         ShowQuestion(question, userAnswer, turn);     // показывает пользователю (пишет номер пользователя) вопрос (скорее всего она же и просит ввести букву или слово)          
-                        ErrCode = correctWord(rightAnswer, userAnswer);               // будет массив букв из которого вычеркиваются буквы которые использовались плюс проверка на некоректный ввод (и еще если слово вводится то просто выход из функции, даже если слово из говна состоит думаю)
+                        ErrCode = correctWord(rightAnswer, userAnswer, checkLenWord);               // будет массив букв из которого вычеркиваются буквы которые использовались плюс проверка на некоректный ввод (и еще если слово вводится то просто выход из функции, даже если слово из говна состоит думаю)
                         //CheckError(ErrCode);
                     }                                                  
                     while (ErrCode != 0);
-                    if (FullWord(userAnswer, rightAnswer))         // проверяет правильное слово ввел игрок
+                    if (checkLenWord)         // проверяет правильное слово ввел игрок
                     {
-                        break;
-                    }                                                
-                    else
-                    {
-                        PlayerTurn(numberPlayer,turn,false);    // устанавливает очередь человека
+                        if (FullWord(userAnswer,rightAnswer)) break;
+                        else
+                        {
+                            PlayerTurn(numberPlayer,turn,false);    // устанавливает очередь человека
                         ShowWrongWord();                        // сообщение о введении неправильного слова
                         continue;
-                    }                     
+                        }
+                    }                                                      
                     step = CheckUserAnswer(userAnswer, rightAnswer, letter, quantity);                // проверяет букву на правильность
                     SayResult(step);                      // выводит: ОТКРОЙТЕ! или Нет такой буквы(                          
                     PlayerTurn(numberPlayer,turn,step);    // устанавливает очередь человека //CheckUserAnswer выдает true если угадал и false если нет

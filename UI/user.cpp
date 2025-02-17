@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <string>
+#include "user.h"
 using namespace std;
 
 //пока чисто для работы
@@ -43,6 +44,6 @@ void SayResult(bool step)
     if (step)
         cout << endl << "Open up!" << endl;
     else
-        cout << endl << "Open up! No, they don't open. Because it's not there.";
+        cout << endl << "Open up! No, they don't open. Because it's not there." << endl;
 }
 

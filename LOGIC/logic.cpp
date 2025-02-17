@@ -6,10 +6,12 @@
 #include <cctype>
 #include <string>
 #include <algorithm>
+#include "logic.h"
 
 using namespace std;
 
-int PlayorExit(int play) {
+template <typename T>
+int PlayorExit(T play) {
     if (play == 1 || play == 2) {
         return 0;
     }
@@ -48,11 +50,15 @@ void QuestionAnswer(string &question, string &rightAnswer) {
 }
 
 //Функция проверяющая правильность ввода буквы
-int correctWord(string &rightAnswer, string &userAnswer) {
+int correctWord(string &rightAnswer, string &userAnswer, bool &checkLenWord) {
     int num = userAnswer[0]; //Первеод буквы в код ASCII
 
-    if (rightAnswer.length() == userAnswer.length()) return 0;
-    
+    if (rightAnswer.length() == userAnswer.length())
+    {
+        checkLenWord = true;
+        return 0;
+    }
+
     if (userAnswer.length() > 1) return 1;
 
     //Проверка на букву английского алфавита

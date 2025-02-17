@@ -6,14 +6,14 @@
  *@return - void
  */
 using namespace std;
-int PlayorExit(int play);
-//прикольный этот комментарийБ у Стаса посмотрел
+template <typename T>
+int PlayorExit(T play);
 
 int chooseNum(int numberPlayer);
 
-void QuestionAnswer(string &question, string &rightAnswer);  //крайне сыро, надо думать (но это уже когда функции будем писать)
+void QuestionAnswer(string &question, string &rightAnswer); 
 
-int correctWord(string &rightAnswer, string &userAnswer);
+int correctWord(string &rightAnswer, string &userAnswer, bool &checkLenWord);
 
 bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& letter, int &quantity);
 
