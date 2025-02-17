@@ -17,8 +17,8 @@ int PlayorExit(string play) {
     return 1;
 }
 
-int chooseNum(int numberPlayer) {
-    if (numberPlayer == 1 || numberPlayer == 2) {
+int chooseNum(string numberPlayer) {
+    if ((numberPlayer[0] == '1' || numberPlayer[0] == '2') && numberPlayer[1] == '\0') {
         return 0;
     }
     return 1;
@@ -91,10 +91,10 @@ bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& lett
     return result;
 }
 
-void PlayerTurn(int &numberPlayer,int &turn, bool step) {
+void PlayerTurn(string &numberPlayer,int &turn, bool step) {
     if (!step) turn++;
 
-    if (turn > numberPlayer) turn = 1;
+    if (turn > (numberPlayer[0]- '0')) turn = 1;
 }
 
 bool FullWord(string &userAnswer, string &rightAnswer) {

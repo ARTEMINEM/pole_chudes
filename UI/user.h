@@ -3,7 +3,7 @@
 
 void ShowMenu(std::string &play);
 
-void NumPlayers(int &numberPlayer);
+void NumPlayers(std::string &numberPlayer);
 
 void ShowQuestion(std::string &question, std::string &userAnswer, int &turn);  
 

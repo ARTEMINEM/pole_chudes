@@ -9,7 +9,7 @@ using namespace std;
 
 int PlayorExit(string play);
 
-int chooseNum(int numberPlayer);
+int chooseNum(string numberPlayer);
 
 void QuestionAnswer(string &question, string &rightAnswer); 
 
@@ -17,7 +17,7 @@ int correctWord(string &rightAnswer, string &userAnswer, bool &checkLenWord);
 
 bool CheckUserAnswer(string &userAnswer, string &rightAnswer, vector<char>& letter, int &quantity);
 
-void PlayerTurn(int &numberPlayer,int &turn, bool step);
+void PlayerTurn(string &numberPlayer,int &turn, bool step);
 
 bool FullWord(string &userAnswer, string &rightAnswer);
 

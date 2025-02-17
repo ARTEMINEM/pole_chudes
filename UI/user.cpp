@@ -13,7 +13,7 @@ void ShowMenu(string &play)
     cin >> play;
 }
 
-void NumPlayers(int &numberPlayer)
+void NumPlayers(string &numberPlayer)
 {
     cout << endl << "Enter number of players (1-2):" << endl;
     cin >> numberPlayer;

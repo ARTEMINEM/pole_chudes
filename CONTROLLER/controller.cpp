@@ -15,10 +15,8 @@ int main()
         /*переменные будут*/
         int ErrCode = 0;
         bool step = false, end = false, checkLenWord = false;
-        //char play;
-        int numberPlayer = 0;
-        int quantity = 0, turn = 1;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
-        std::string question, rightAnswer, userAnswer, play;
+        int quantity = 0, turn = 1;                              
+        std::string question, rightAnswer, userAnswer, play, numberPlayer;
         std::vector<char> letter;
 
         do
