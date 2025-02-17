@@ -15,9 +15,10 @@ int main()
         /*переменные будут*/
         int ErrCode = 0;
         bool step = false, end = false, checkLenWord = false;
-        int play = 0, numberPlayer = 0, turn = 1;
-        int quantity = 0;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
-        std::string question, rightAnswer, userAnswer;
+        //char play;
+        int numberPlayer = 0;
+        int quantity = 0, turn = 1;                               //длина слова (может и не надо, пока хз) //колличество угаданных букв
+        std::string question, rightAnswer, userAnswer, play;
         std::vector<char> letter;
 
         do
@@ -26,15 +27,14 @@ int main()
             ShowMenu(play);                    // эта штука выводит надпись поле чудес и кнопки играть или выйти, и пользователь выбирает (юзер)
             ErrCode = PlayorExit(play);        // эта штука проверяет что пользователь ввел (логика)
             //CheckError(ErrCode);                // если была ошибка (ErrCode != 0), проверяет что за ошибка
-            cout << ErrCode << endl;
         }
         while (ErrCode != 0);
         
 
         /* над ошибками тут вообще пока не думал*/
-        switch(play)
+        switch(play[0])
         {
-            case 1: // это если играть нажал
+            case '1': // это если играть нажал
                 do
                 {
                     //system("cls");
@@ -76,7 +76,7 @@ int main()
                 }
                 break;
                 
-            case 2: // это если выйти из игры
+            case '2': // это если выйти из игры
                 return 0;
         }
     }

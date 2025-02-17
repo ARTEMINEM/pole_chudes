@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-void ShowMenu(int &play);
+void ShowMenu(std::string &play);
 
 void NumPlayers(int &numberPlayer);
 

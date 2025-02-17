@@ -6,7 +6,7 @@ using namespace std;
 
 //пока чисто для работы
 //на английском чтобы не обосралось ниче, но на русском смешнее фразы у него
-void ShowMenu(int &play)
+void ShowMenu(string &play)
 {
     cout << endl << "Field of miracles" << endl;
     cout << endl << "1)play\t\t2)exit" << endl;

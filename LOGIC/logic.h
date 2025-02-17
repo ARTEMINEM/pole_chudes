@@ -7,7 +7,7 @@
  */
 using namespace std;
 
-int PlayorExit(int play);
+int PlayorExit(string play);
 
 int chooseNum(int numberPlayer);
 

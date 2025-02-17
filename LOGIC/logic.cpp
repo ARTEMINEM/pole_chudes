@@ -10,8 +10,8 @@
 
 using namespace std;
 
-int PlayorExit(int play) {
-    if (play == 1 || play == 2) {
+int PlayorExit(string play) {
+    if ((play[0] == '1' || play[0] == '2') && play[1] == '\0') {
         return 0;
     }
     return 1;
