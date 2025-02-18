@@ -1,15 +1,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <random>
 #include "../LOGIC/logic.h"
 #include "../UI/user.h"
 #include "../ERROR/error.h"
 
-//  ЕСЛИ ЧТО ТЫ ПОКА НИКАК СВОЮ ЛОГИКУ НЕ ПОДГОНЯЙ ПОД ТО, ЧТО Я НАПИСАЛ ИЛИ НАОБОРОТ МОЕ НИКАК НЕ МЕНЯЙ.
-//  ПОТОМ КАК ВСТРЕТИМСЯ И ВСЕ ОБСУДИМ ТО СКОМБИНИРУЕМ ВСЕ (КАПСОМ ЧТОБЫ УВИДЕЛ)
+
 
 int main()
-{
+{   
+    srand(0);
     while(true)
     {
         /*переменные будут*/
@@ -29,7 +30,6 @@ int main()
         while (ErrCode != 0);
         
 
-        /* над ошибками тут вообще пока не думал*/
         switch(play[0])
         {
             case '1': // это если играть нажал
@@ -60,8 +60,8 @@ int main()
                         else
                         {
                             PlayerTurn(numberPlayer,turn,false);    // устанавливает очередь человека
-                        ShowWrongWord();                        // сообщение о введении неправильного слова
-                        continue;
+                            ShowWrongWord();                        // сообщение о введении неправильного слова
+                            continue;
                         }
                     }                                                      
                     step = CheckUserAnswer(userAnswer, rightAnswer, letter, quantity);                // проверяет букву на правильность
